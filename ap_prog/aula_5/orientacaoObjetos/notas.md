@@ -169,19 +169,38 @@ class Conta():
 ```
 # Exercícios
 1. Crie um arquivo banco.py
-3. Defina a classe Cliente com o construtor e os atributos:
-- nome
-- endereço
-- cpf
-- telefone
-- declare os métodos getter / setter para todos os atributos
-4. defina a classe Conta com o construtor e os seguintes atributos:
-- numero da conta
-- saldo
-- Cliente
-- declare métodos para depositar, sacar e exibir o saldo do cliente.
-- declare o método de transferência entre contas (transferência é saque de uma
-conta e depósito em outra)
+3. Defina a classe Cliente com o construtor e os atributos: nome, endereço, cpf, telefone,  declare os métodos getter / setter para todos os atributos
+4. defina a classe Conta com o construtor e os seguintes atributos: numero da conta, saldo, Cliente, declare métodos para depositar, sacar e exibir o saldo do cliente, declare o método de transferência entre contas (transferência é saque de uma conta e depósito em outra).
 5. Faça simulações, instanciando dois clientes e duas contas.
 
 ## Herança e polimorfismo
+Na ciência da computação, a palavra CLASSE deriva da classificação da biologia. A ideia por tras de classificação envolve a busca de cracterísticas comuns entre os seres vivos. Partindo de características genéricas para mais específicas, podemos desenvolver projetos que irão demandar reutilização de software de qualidade (testado e depurado), economizando tempo e facilitando a manutenção.
+
+Podemos utilizar como exemplo aplicado ao projeto de banco;
+
+              < Conta Universitária
+        conta < Conta Benefício
+              < Conta Corrente
+
+A classe mais genéricadenominada Conta é chamada se duperclass (mãe) e as classes mais específicas de subclass (filhas).
+
+Classe mão possui todas os atributos e métodos genéricos para todas as contas. As demais contas, herdam características e métodos, que por sua vez podem oferecer recursos para outras classes que venham a herdar destas (herança múltipla). Para utilização da herança, é importante a elaboração de um projeto que abranja a complexidade do sistema e sua possíveis extensões futuras. Toda classe mão deve ser mais genérica possível, afim de abranger as características de suas classes filhas, evitando-se inconsistências. 
+
+Para implementar a herança, basta criar a superclasss e definir wue a subcçass está herdando por meio do constutor. ex:
+```
+class ContaCorrente(Conta):
+    def __init__(self, nome, endereco, cpf numero_conta):
+        super().__init__(nome, endereco, cpf, numero_conta)
+        self.saldo_investimento=0.0
+```
+
+Como Python possui tipagem dinâmica, precisamos nos certificar, informando os parâmetros da superclass e ecovando o construtor da conta no construtor de ContaCorrente>
+
+
+# Exercícios
+No projeto banco, vamos implementar um classe ContaCorrente que herda de Conta.
+1. Crie a classe ContaCorrente e faça a herança, ajustando os construtores.
+2. Implemente um novo atributo em conta corrente denominado saldo de investimento
+3. Implemente o método de investir que recebe um tipo (string) e um valor para o investimento.
+4. Se o investimento for do tipo 1, o valor deve ser sacado da conta do cliente e aplicado no saldo de investimento acrescido de 1%; se o investimento for do tipo 2 o valor aplicado será acrescido de 5%, senão serão acrescidos 10%.
+5. Realize as simulações.
